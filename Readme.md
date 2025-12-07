@@ -1,12 +1,13 @@
 # Algoooeee Project
 
-Welcome to the Algoooeee project! This repository hosts algorithms and data structures implementations. We use a standard fork-and-pull-request workflow for all contributions.
+Welcome to the Algoooeee project! This repository is for algorithmic trading implementations. We use a standard fork-and-pull-request workflow for all contributions.
 
 ## Prerequisites
 
-Before you begin, ensure you have Git installed on your local machine.
+Before you begin.
 
-*   **Install Git**: You can download and install the latest version from the official [Git-SCM website](git-scm.com).
+- **Install Git**: You can download and install the latest version from the official [Git-SCM website](git-scm.com).
+- **Install Python**: You can download and install the python.3.14.xx version from the official [Python-ORG website](www.python.org/downloads).
 
 ## Setup Instructions
 
@@ -24,7 +25,7 @@ The first step is to create a personal copy (a "fork") of the main project repos
 
 Now, you need to download your personal fork to your local machine.
 
-1.  Go to your *forked* repository page on GitHub.
+1.  Go to your _forked_ repository page on GitHub.
 2.  Click the green **"Code"** button and copy the HTTPS URL.
 3.  Open your terminal or command prompt.
 4.  Run the following command, replacing `YOUR_FORK_URL` with the URL you copied in the previous step:
@@ -33,13 +34,36 @@ Now, you need to download your personal fork to your local machine.
     git clone YOUR_FORK_URL
     ```
 
-5.  Navigate into the newly created project directory:
+5.  Once the clone is successfull you will see the folder got created as "Algoooeee"
+
+### Step 3: Setting up and run the app from scratch
+
+1.  Navigate into the newly created project directory:
 
     ```bash
     cd Algoooeee
     ```
 
-### Step 3: Configure the Original ("Upstream") Repository
+2.  Create a python virtual envionment and install the libraires required:
+
+    ```bash
+    python -m venv venv
+    source venv/Scripts/activate
+    pip install -r requirements.txt
+    python main.py
+    ```
+
+    You should see the packages got installed succcessfully into the venv
+
+
+3.  Create file .env in the root folder for Upstox API key [Sandbox APIs Documentation](https://upstox.com/developer/api-documentation/sandbox):
+
+    ```
+    # .env file content
+    UPSTOX_API_TOKEN="YOUR_ACTUAL_UPSTOX_API_TOKEN_HERE"
+    ```
+
+### Step 4: Configure the Original ("Upstream") Repository
 
 To keep your local copy in sync with the main project repository, you should add the original repo as an "upstream" remote.
 
@@ -73,6 +97,6 @@ Once your project is set up, you are ready to make changes:
 2.  **Create a new branch** for your specific feature or fix:
     `git checkout -b feature/your-feature-name`
 3.  **Make your changes**, `add`, and `commit` them locally.
-4.  **Push** your branch to *your fork* (`origin`):
+4.  **Push** your branch to _your fork_ (`origin`):
     `git push origin feature/your-feature-name`
 5.  Go to your fork on GitHub and **open a Pull Request** back to the original `atultvarghese/Algoooeee` repository.
