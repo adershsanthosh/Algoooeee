@@ -1,4 +1,4 @@
-# Algoooeee Project
+# Algooee Project
 
 Welcome to the Algoooeee project! This repository is for algorithmic trading implementations. We use a standard fork-and-pull-request workflow for all contributions.
 
