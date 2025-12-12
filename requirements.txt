@@ -1,5 +1,10 @@
-pandas
-requests
-dotenv
-scikit-learn
+aiofiles
+jinja2
+fastapi
 matplotlib
+pandas
+pydantic
+python-dotenv
+requests
+scikit-learn
+uvicorn
