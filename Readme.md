@@ -2,12 +2,14 @@
 
 Welcome to the Algoooeee project! This repository is for algorithmic trading implementations. We use a standard fork-and-pull-request workflow for all contributions.
 
+[Join our Discord Community](https://discord.gg/8bGeKNdr)
+
 ## Prerequisites
 
 Before you begin.
 
-- **Install Git**: You can download and install the latest version from the official [Git-SCM website](git-scm.com).
-- **Install Python**: You can download and install the python.3.14.xx version from the official [Python-ORG website](www.python.org/downloads).
+- **Install Git**: You can download and install the latest version from the official [Git-SCM website](https://git-scm.com/install/).
+- **Install Python**: You can download and install the python.3.14.xx version from the official [Python-ORG website](https://www.python.org/downloads/).
 
 ## Setup Instructions
 
@@ -27,76 +29,33 @@ Now, you need to download your personal fork to your local machine.
 
 1.  Go to your _forked_ repository page on GitHub.
 2.  Click the green **"Code"** button and copy the HTTPS URL.
-3.  Open your terminal or command prompt.
-4.  Run the following command, replacing `YOUR_FORK_URL` with the URL you copied in the previous step:
+# Algooee
 
-    ```bash
-    git clone YOUR_FORK_URL
-    ```
+Lightweight stock prediction project with a FastAPI backend and a minimal UI.
 
-5.  Once the clone is successfull you will see the folder got created as "Algoooeee"
+Quick start
+-----------
 
-### Step 3: Setting up and run the app from scratch
+1. Create a virtual environment and install dependencies:
 
-1.  Navigate into the newly created project directory:
+```powershell
+python -m venv venv
+venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+```
 
-    ```bash
-    cd Algoooeee
-    ```
+2. Copy `.env.example` to `.env` and add your `UPSTOX_API_TOKEN`.
 
-2.  Create a python virtual envionment and install the libraires required:
+3. Run the server (development):
 
-    ```bash
-    python -m venv venv
-    source venv/Scripts/activate
-    pip install -r requirements.txt
-    python main.py
-    ```
+```powershell
+uvicorn server:app --reload
+```
 
-    You should see the packages got installed succcessfully into the venv
+4. Open the UI in your browser: `http://localhost:8000/`.
 
+Notes
+-----
+- The web UI is served from `app/templates/index.html` and static assets are in `app/static/`.
+- If you don't have an Upstox token, the UI will load but prediction calls will return a 503.
 
-3.  Create file .env in the root folder for Upstox API key [Sandbox APIs Documentation](https://upstox.com/developer/api-documentation/sandbox):
-
-    ```
-    # .env file content
-    UPSTOX_API_TOKEN="YOUR_ACTUAL_UPSTOX_API_TOKEN_HERE"
-    ```
-
-### Step 4: Configure the Original ("Upstream") Repository
-
-To keep your local copy in sync with the main project repository, you should add the original repo as an "upstream" remote.
-
-1.  Add the original repository as an upstream remote:
-
-    ```bash
-    git remote add upstream github.com
-    ```
-
-2.  Verify that both remotes are configured correctly:
-
-    ```bash
-    git remote -v
-    ```
-
-    You should see both your `origin` (your fork) and the `upstream` (the main project):
-
-    ```
-    origin    github.com (fetch)
-    origin    github.com (push)
-    upstream  github.com (fetch)
-    upstream  github.com (push)
-    ```
-
-## Contributing
-
-Once your project is set up, you are ready to make changes:
-
-1.  **Sync** your local `main` branch with the `upstream` `main` branch:
-    `git pull upstream main`
-2.  **Create a new branch** for your specific feature or fix:
-    `git checkout -b feature/your-feature-name`
-3.  **Make your changes**, `add`, and `commit` them locally.
-4.  **Push** your branch to _your fork_ (`origin`):
-    `git push origin feature/your-feature-name`
-5.  Go to your fork on GitHub and **open a Pull Request** back to the original `atultvarghese/Algoooeee` repository.
