@@ -1,6 +1,5 @@
-from fastapi import FastAPI, HTTPException, Request
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, List
 import pandas as pd
@@ -13,9 +12,17 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Mount static files and templates
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
-templates = Jinja2Templates(directory="app/templates")
+# Allow the frontend dev servers to access this API (Vite default ports)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # Request/Response Models
 class StockPredictionRequest(BaseModel):
@@ -43,15 +50,9 @@ except ValueError as e:
 
 # API Routes
 @app.get("/", tags=["UI"])
-async def root(request: Request):
-    """Serve the UI as the main home page"""
-    return templates.TemplateResponse("index.html", {"request": request})
-
-
-@app.get("/ui", tags=["UI"])
-async def ui(request: Request):
-    """Serve the single-page UI for interacting with the API"""
-    return templates.TemplateResponse("index.html", {"request": request})
+async def root():
+    """Root endpoint – UI removed, API only."""
+    return {"message": "This server provides the Algooee API. Frontend moved to a separate React/Vite application."}
 
 @app.get("/health", tags=["Health"])
 async def health():
@@ -164,7 +165,8 @@ async def get_stock_list():
     """Get list of supported stocks with their ISINs"""
     stocks = {
         "stocks": [
-            {"name": "Reliance Industries", "isin": "INE002A01018"},
+            {"name": "Trident", "isin": "INE064C01022"},
+            {"name": "NIFTYBEES", "isin": "INF204KB14I2"},
             {"name": "Bharti Airtel", "isin": "INE397D01024"},
             {"name": "TCS", "isin": "INE467B01029"},
             {"name": "ICICI Bank", "isin": "INE090A01021"},
@@ -178,12 +180,8 @@ async def get_stock_list():
             {"name": "Sun Pharma", "isin": "INE044A01036"},
             {"name": "Axis Bank", "isin": "INE238A01034"},
             {"name": "UltraTech Cement", "isin": "INE481G01011"},
-            {"name": "Titan Company", "isin": "INE280A01028"},
-            {"name": "NTPC", "isin": "INE733E01010"},
             {"name": "Asian Paints", "isin": "INE021A01026"},
             {"name": "Tata Steel", "isin": "INE081A01020"},
-            {"name": "Tata Consumer Products", "isin": "INE192A01025"},
-            {"name": "Wipro", "isin": "INE075A01022"},
             {"name": "Adani Enterprises", "isin": "INE423A01024"},
             {"name": "Adani Ports", "isin": "INE742F01042"},
         ]
